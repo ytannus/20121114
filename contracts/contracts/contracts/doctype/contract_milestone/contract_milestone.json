@@ -1,0 +1,92 @@
+{
+ "actions": [],
+ "creation": "2025-11-05 17:39:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "milestone_name",
+  "description",
+  "target_date",
+  "actual_date",
+  "column_break_2",
+  "status",
+  "payment_linked",
+  "payment_percentage",
+  "completion_criteria",
+  "achieved"
+ ],
+ "fields": [
+  {
+   "fieldname": "milestone_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Milestone Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "target_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Target Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "actual_date",
+   "fieldtype": "Date",
+   "label": "Actual Date"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Not Started",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Not Started\nIn Progress\nCompleted\nDelayed"
+  },
+  {
+   "default": "0",
+   "fieldname": "payment_linked",
+   "fieldtype": "Check",
+   "label": "Payment Linked"
+  },
+  {
+   "depends_on": "payment_linked",
+   "fieldname": "payment_percentage",
+   "fieldtype": "Percent",
+   "label": "Payment Percentage"
+  },
+  {
+   "fieldname": "completion_criteria",
+   "fieldtype": "Small Text",
+   "label": "Completion Criteria"
+  },
+  {
+   "default": "0",
+   "fieldname": "achieved",
+   "fieldtype": "Check",
+   "label": "Achieved"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-11-05 17:39:00.000000",
+ "modified_by": "Administrator",
+ "module": "Contracts",
+ "name": "Contract Milestone",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

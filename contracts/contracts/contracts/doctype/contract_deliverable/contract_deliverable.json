@@ -1,0 +1,91 @@
+{
+ "actions": [],
+ "creation": "2025-11-05 17:39:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "deliverable_name",
+  "description",
+  "due_date",
+  "responsible_party",
+  "column_break_2",
+  "assigned_to",
+  "status",
+  "completion_date",
+  "completion_percentage",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "deliverable_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Deliverable Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Due Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "responsible_party",
+   "fieldtype": "Select",
+   "label": "Responsible Party",
+   "options": "Company\nParty\nOther"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "assigned_to",
+   "fieldtype": "Link",
+   "label": "Assigned To",
+   "options": "User"
+  },
+  {
+   "default": "Not Started",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Not Started\nIn Progress\nCompleted\nDelayed\nCancelled"
+  },
+  {
+   "fieldname": "completion_date",
+   "fieldtype": "Date",
+   "label": "Completion Date"
+  },
+  {
+   "fieldname": "completion_percentage",
+   "fieldtype": "Percent",
+   "label": "Completion %"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-11-05 17:39:00.000000",
+ "modified_by": "Administrator",
+ "module": "Contracts",
+ "name": "Contract Deliverable",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

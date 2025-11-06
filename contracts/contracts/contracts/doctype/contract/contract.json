@@ -4,41 +4,131 @@
  "autoname": "naming_series:",
  "creation": "2025-11-05 17:39:00.000000",
  "doctype": "DocType",
+ "document_type": "Document",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "basic_information_section",
   "naming_series",
   "contract_name",
   "contract_type",
   "status",
-  "column_break_2",
+  "priority",
+  "column_break_basic",
+  "department",
+  "cost_center",
+  "project",
+  "assigned_to",
+  "party_information_section",
   "party_type",
   "party",
   "party_name",
-  "section_break_5",
+  "column_break_party",
+  "party_address",
+  "party_contact",
+  "additional_parties_section",
+  "additional_parties",
+  "duration_and_dates_section",
   "start_date",
   "end_date",
-  "column_break_8",
+  "duration_days",
+  "column_break_duration",
+  "signing_date",
+  "effective_date",
+  "notice_period_days",
+  "column_break_notification",
+  "expiry_notification_enabled",
+  "notification_days",
+  "financial_details_section",
   "contract_value",
   "currency",
-  "section_break_10",
-  "contract_terms",
+  "contract_value_in_company_currency",
+  "exchange_rate",
+  "column_break_financial",
+  "tax_category",
+  "payment_terms_template",
+  "billing_cycle",
+  "column_break_advance",
+  "advance_payment_required",
+  "advance_payment_percentage",
+  "payment_schedule_section",
+  "payment_schedule",
+  "contract_terms_section",
   "description",
-  "section_break_12",
+  "contract_terms",
+  "scope_of_work",
+  "column_break_clauses",
+  "special_clauses",
+  "termination_clause",
+  "confidentiality_clause",
+  "dispute_resolution",
+  "deliverables_section",
+  "deliverables",
+  "obligations_section",
+  "obligations",
+  "renewal_settings_section",
   "auto_renew",
   "renewal_period",
-  "column_break_15",
-  "notification_days",
-  "section_break_16",
-  "signed_by",
-  "signed_on",
-  "column_break_19",
-  "signatory_company",
-  "signatory_designation",
-  "section_break_21",
-  "attachments"
+  "max_renewals",
+  "column_break_renewal",
+  "renewal_notification_days",
+  "renewal_count",
+  "renewal_terms",
+  "approval_and_signatory_section",
+  "requires_approval",
+  "approval_status",
+  "column_break_approval",
+  "approved_by",
+  "approved_on",
+  "approval_comments",
+  "signatory_section",
+  "company_signatory",
+  "company_signatory_designation",
+  "column_break_signatory",
+  "party_signatory_name",
+  "party_signatory_designation",
+  "witness_section",
+  "witness_1",
+  "column_break_witness",
+  "witness_2",
+  "compliance_and_risk_section",
+  "risk_level",
+  "risk_assessment",
+  "column_break_compliance",
+  "insurance_required",
+  "insurance_details",
+  "compliance_requirements_section",
+  "compliance_requirements",
+  "regulatory_approvals_section",
+  "regulatory_approvals",
+  "document_management_section",
+  "attachments",
+  "document_version",
+  "column_break_version",
+  "master_agreement",
+  "related_contracts_section",
+  "related_contracts",
+  "tracking_and_monitoring_section",
+  "milestones",
+  "performance_metrics_section",
+  "performance_metrics",
+  "reviews_section",
+  "reviews",
+  "next_review_date",
+  "amendments_section",
+  "amendments",
+  "version_history_section",
+  "version_history",
+  "internal_notes_section",
+  "internal_notes",
+  "tags"
  ],
  "fields": [
+  {
+   "fieldname": "basic_information_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Information"
+  },
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
@@ -49,16 +139,19 @@
   {
    "fieldname": "contract_name",
    "fieldtype": "Data",
+   "in_global_search": 1,
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Contract Name",
    "reqd": 1
   },
   {
    "fieldname": "contract_type",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Contract Type",
-   "options": "\nService Agreement\nPurchase Agreement\nSales Agreement\nLease Agreement\nNDA\nEmployment Contract\nConsulting Agreement\nOther",
+   "options": "Contract Type",
    "reqd": 1
   },
   {
@@ -68,24 +161,64 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Status",
-   "options": "Draft\nActive\nExpired\nTerminated\nRenewed",
+   "options": "Draft\nPending Approval\nApproved\nActive\nOn Hold\nExpired\nTerminated\nRenewed",
    "reqd": 1
   },
   {
-   "fieldname": "column_break_2",
+   "default": "Medium",
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Priority",
+   "options": "Low\nMedium\nHigh\nCritical"
+  },
+  {
+   "fieldname": "column_break_basic",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fieldname": "assigned_to",
+   "fieldtype": "Link",
+   "label": "Assigned To",
+   "options": "User"
+  },
+  {
+   "fieldname": "party_information_section",
+   "fieldtype": "Section Break",
+   "label": "Party Information"
   },
   {
    "fieldname": "party_type",
    "fieldtype": "Link",
    "label": "Party Type",
-   "options": "DocType"
+   "options": "DocType",
+   "reqd": 1
   },
   {
    "fieldname": "party",
    "fieldtype": "Dynamic Link",
+   "in_standard_filter": 1,
    "label": "Party",
-   "options": "party_type"
+   "options": "party_type",
+   "reqd": 1
   },
   {
    "fetch_from": "party.name",
@@ -95,9 +228,37 @@
    "read_only": 1
   },
   {
-   "fieldname": "section_break_5",
+   "fieldname": "column_break_party",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "party_address",
+   "fieldtype": "Link",
+   "label": "Party Address",
+   "options": "Address"
+  },
+  {
+   "fieldname": "party_contact",
+   "fieldtype": "Link",
+   "label": "Party Contact",
+   "options": "Contact"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "additional_parties_section",
    "fieldtype": "Section Break",
-   "label": "Duration & Value"
+   "label": "Additional Parties"
+  },
+  {
+   "fieldname": "additional_parties",
+   "fieldtype": "Table",
+   "label": "Additional Parties",
+   "options": "Contract Additional Party"
+  },
+  {
+   "fieldname": "duration_and_dates_section",
+   "fieldtype": "Section Break",
+   "label": "Duration and Dates"
   },
   {
    "fieldname": "start_date",
@@ -114,8 +275,53 @@
    "reqd": 1
   },
   {
-   "fieldname": "column_break_8",
+   "fieldname": "duration_days",
+   "fieldtype": "Int",
+   "label": "Duration (Days)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_duration",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "signing_date",
+   "fieldtype": "Date",
+   "label": "Signing Date"
+  },
+  {
+   "fieldname": "effective_date",
+   "fieldtype": "Date",
+   "label": "Effective Date"
+  },
+  {
+   "description": "Notice period required for contract termination (in days)",
+   "fieldname": "notice_period_days",
+   "fieldtype": "Int",
+   "label": "Notice Period (Days)"
+  },
+  {
+   "fieldname": "column_break_notification",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "expiry_notification_enabled",
+   "fieldtype": "Check",
+   "label": "Enable Expiry Notifications"
+  },
+  {
+   "default": "30",
+   "depends_on": "expiry_notification_enabled",
+   "description": "Number of days before contract end date to send notification",
+   "fieldname": "notification_days",
+   "fieldtype": "Int",
+   "label": "Notification Days Before Expiry"
+  },
+  {
+   "fieldname": "financial_details_section",
+   "fieldtype": "Section Break",
+   "label": "Financial Details"
   },
   {
    "fieldname": "contract_value",
@@ -124,16 +330,85 @@
    "options": "currency"
   },
   {
-   "default": "USD",
    "fieldname": "currency",
    "fieldtype": "Link",
    "label": "Currency",
    "options": "Currency"
   },
   {
-   "fieldname": "section_break_10",
+   "fieldname": "contract_value_in_company_currency",
+   "fieldtype": "Currency",
+   "label": "Contract Value (Company Currency)",
+   "options": "Company:company:default_currency",
+   "read_only": 1
+  },
+  {
+   "default": "1.0",
+   "fieldname": "exchange_rate",
+   "fieldtype": "Float",
+   "label": "Exchange Rate",
+   "precision": "9"
+  },
+  {
+   "fieldname": "column_break_financial",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tax_category",
+   "fieldtype": "Link",
+   "label": "Tax Category",
+   "options": "Tax Category"
+  },
+  {
+   "fieldname": "payment_terms_template",
+   "fieldtype": "Link",
+   "label": "Payment Terms Template",
+   "options": "Payment Terms Template"
+  },
+  {
+   "fieldname": "billing_cycle",
+   "fieldtype": "Select",
+   "label": "Billing Cycle",
+   "options": "\nOne-time\nMonthly\nQuarterly\nSemi-Annual\nAnnual"
+  },
+  {
+   "fieldname": "column_break_advance",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "advance_payment_required",
+   "fieldtype": "Check",
+   "label": "Advance Payment Required"
+  },
+  {
+   "depends_on": "advance_payment_required",
+   "fieldname": "advance_payment_percentage",
+   "fieldtype": "Percent",
+   "label": "Advance Payment Percentage"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "payment_schedule_section",
    "fieldtype": "Section Break",
-   "label": "Terms & Description"
+   "label": "Payment Schedule"
+  },
+  {
+   "fieldname": "payment_schedule",
+   "fieldtype": "Table",
+   "label": "Payment Schedule",
+   "options": "Contract Payment Schedule"
+  },
+  {
+   "fieldname": "contract_terms_section",
+   "fieldtype": "Section Break",
+   "label": "Contract Terms and Description"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "in_global_search": 1,
+   "label": "Description"
   },
   {
    "fieldname": "contract_terms",
@@ -141,12 +416,61 @@
    "label": "Contract Terms"
   },
   {
-   "fieldname": "description",
-   "fieldtype": "Small Text",
-   "label": "Description"
+   "fieldname": "scope_of_work",
+   "fieldtype": "Text Editor",
+   "label": "Scope of Work"
   },
   {
-   "fieldname": "section_break_12",
+   "fieldname": "column_break_clauses",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "special_clauses",
+   "fieldtype": "Text Editor",
+   "label": "Special Clauses"
+  },
+  {
+   "fieldname": "termination_clause",
+   "fieldtype": "Text Editor",
+   "label": "Termination Clause"
+  },
+  {
+   "fieldname": "confidentiality_clause",
+   "fieldtype": "Text Editor",
+   "label": "Confidentiality Clause"
+  },
+  {
+   "fieldname": "dispute_resolution",
+   "fieldtype": "Text Editor",
+   "label": "Dispute Resolution"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "deliverables_section",
+   "fieldtype": "Section Break",
+   "label": "Deliverables"
+  },
+  {
+   "fieldname": "deliverables",
+   "fieldtype": "Table",
+   "label": "Deliverables",
+   "options": "Contract Deliverable"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "obligations_section",
+   "fieldtype": "Section Break",
+   "label": "Obligations"
+  },
+  {
+   "fieldname": "obligations",
+   "fieldtype": "Table",
+   "label": "Obligations",
+   "options": "Contract Obligation"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "renewal_settings_section",
    "fieldtype": "Section Break",
    "label": "Renewal Settings"
   },
@@ -164,59 +488,316 @@
    "options": "\n1 Month\n3 Months\n6 Months\n1 Year\n2 Years\n3 Years"
   },
   {
-   "fieldname": "column_break_15",
+   "depends_on": "auto_renew",
+   "fieldname": "max_renewals",
+   "fieldtype": "Int",
+   "label": "Maximum Renewals"
+  },
+  {
+   "fieldname": "column_break_renewal",
    "fieldtype": "Column Break"
   },
   {
    "default": "30",
-   "description": "Number of days before contract end date to send notification",
-   "fieldname": "notification_days",
+   "depends_on": "auto_renew",
+   "fieldname": "renewal_notification_days",
    "fieldtype": "Int",
-   "label": "Notification Days"
+   "label": "Renewal Notification Days"
   },
   {
-   "fieldname": "section_break_16",
+   "default": "0",
+   "fieldname": "renewal_count",
+   "fieldtype": "Int",
+   "label": "Renewal Count",
+   "read_only": 1
+  },
+  {
+   "depends_on": "auto_renew",
+   "fieldname": "renewal_terms",
+   "fieldtype": "Small Text",
+   "label": "Renewal Terms"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "approval_and_signatory_section",
+   "fieldtype": "Section Break",
+   "label": "Approval"
+  },
+  {
+   "default": "0",
+   "fieldname": "requires_approval",
+   "fieldtype": "Check",
+   "label": "Requires Approval"
+  },
+  {
+   "default": "Pending",
+   "depends_on": "requires_approval",
+   "fieldname": "approval_status",
+   "fieldtype": "Select",
+   "label": "Approval Status",
+   "options": "Pending\nApproved\nRejected"
+  },
+  {
+   "fieldname": "column_break_approval",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "requires_approval",
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User"
+  },
+  {
+   "depends_on": "requires_approval",
+   "fieldname": "approved_on",
+   "fieldtype": "Date",
+   "label": "Approved On"
+  },
+  {
+   "depends_on": "requires_approval",
+   "fieldname": "approval_comments",
+   "fieldtype": "Small Text",
+   "label": "Approval Comments"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "signatory_section",
    "fieldtype": "Section Break",
    "label": "Signatory Details"
   },
   {
-   "fieldname": "signed_by",
+   "fieldname": "company_signatory",
    "fieldtype": "Link",
-   "label": "Signed By",
-   "options": "User"
+   "label": "Company Signatory",
+   "options": "Employee"
   },
   {
-   "fieldname": "signed_on",
-   "fieldtype": "Date",
-   "label": "Signed On"
+   "fieldname": "company_signatory_designation",
+   "fieldtype": "Data",
+   "label": "Company Signatory Designation"
   },
   {
-   "fieldname": "column_break_19",
+   "fieldname": "column_break_signatory",
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "signatory_company",
+   "fieldname": "party_signatory_name",
    "fieldtype": "Data",
-   "label": "Signatory Company"
+   "label": "Party Signatory Name"
   },
   {
-   "fieldname": "signatory_designation",
+   "fieldname": "party_signatory_designation",
    "fieldtype": "Data",
-   "label": "Signatory Designation"
+   "label": "Party Signatory Designation"
   },
   {
-   "fieldname": "section_break_21",
+   "collapsible": 1,
+   "fieldname": "witness_section",
    "fieldtype": "Section Break",
-   "label": "Attachments"
+   "label": "Witnesses"
+  },
+  {
+   "fieldname": "witness_1",
+   "fieldtype": "Data",
+   "label": "Witness 1"
+  },
+  {
+   "fieldname": "column_break_witness",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "witness_2",
+   "fieldtype": "Data",
+   "label": "Witness 2"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "compliance_and_risk_section",
+   "fieldtype": "Section Break",
+   "label": "Compliance and Risk"
+  },
+  {
+   "default": "Low",
+   "fieldname": "risk_level",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Risk Level",
+   "options": "Low\nMedium\nHigh\nCritical"
+  },
+  {
+   "fieldname": "risk_assessment",
+   "fieldtype": "Small Text",
+   "label": "Risk Assessment"
+  },
+  {
+   "fieldname": "column_break_compliance",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "insurance_required",
+   "fieldtype": "Check",
+   "label": "Insurance Required"
+  },
+  {
+   "depends_on": "insurance_required",
+   "fieldname": "insurance_details",
+   "fieldtype": "Small Text",
+   "label": "Insurance Details"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "compliance_requirements_section",
+   "fieldtype": "Section Break",
+   "label": "Compliance Requirements"
+  },
+  {
+   "fieldname": "compliance_requirements",
+   "fieldtype": "Table",
+   "label": "Compliance Requirements",
+   "options": "Contract Compliance"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "regulatory_approvals_section",
+   "fieldtype": "Section Break",
+   "label": "Regulatory Approvals"
+  },
+  {
+   "fieldname": "regulatory_approvals",
+   "fieldtype": "Table",
+   "label": "Regulatory Approvals",
+   "options": "Contract Regulatory Approval"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "document_management_section",
+   "fieldtype": "Section Break",
+   "label": "Document Management"
   },
   {
    "fieldname": "attachments",
    "fieldtype": "Table",
    "label": "Attachments",
    "options": "Contract Attachment"
+  },
+  {
+   "default": "1.0",
+   "fieldname": "document_version",
+   "fieldtype": "Data",
+   "label": "Document Version",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_version",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "master_agreement",
+   "fieldtype": "Link",
+   "label": "Master Agreement",
+   "options": "Contract"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "related_contracts_section",
+   "fieldtype": "Section Break",
+   "label": "Related Contracts"
+  },
+  {
+   "fieldname": "related_contracts",
+   "fieldtype": "Table",
+   "label": "Related Contracts",
+   "options": "Related Contract"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "tracking_and_monitoring_section",
+   "fieldtype": "Section Break",
+   "label": "Milestones"
+  },
+  {
+   "fieldname": "milestones",
+   "fieldtype": "Table",
+   "label": "Milestones",
+   "options": "Contract Milestone"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "performance_metrics_section",
+   "fieldtype": "Section Break",
+   "label": "Performance Metrics"
+  },
+  {
+   "fieldname": "performance_metrics",
+   "fieldtype": "Table",
+   "label": "Performance Metrics",
+   "options": "Contract Performance Metric"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "reviews_section",
+   "fieldtype": "Section Break",
+   "label": "Reviews"
+  },
+  {
+   "fieldname": "reviews",
+   "fieldtype": "Table",
+   "label": "Reviews",
+   "options": "Contract Review"
+  },
+  {
+   "fieldname": "next_review_date",
+   "fieldtype": "Date",
+   "label": "Next Review Date"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "amendments_section",
+   "fieldtype": "Section Break",
+   "label": "Amendments"
+  },
+  {
+   "fieldname": "amendments",
+   "fieldtype": "Table",
+   "label": "Amendments",
+   "options": "Contract Amendment",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "eval:doc.__islocal==0",
+   "fieldname": "version_history_section",
+   "fieldtype": "Section Break",
+   "label": "Version History"
+  },
+  {
+   "fieldname": "version_history",
+   "fieldtype": "Table",
+   "label": "Version History",
+   "options": "Contract Version",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "internal_notes_section",
+   "fieldtype": "Section Break",
+   "label": "Internal Notes"
+  },
+  {
+   "fieldname": "internal_notes",
+   "fieldtype": "Text",
+   "label": "Internal Notes"
+  },
+  {
+   "fieldname": "tags",
+   "fieldtype": "Data",
+   "label": "Tags"
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
  "modified": "2025-11-05 17:39:00.000000",
  "modified_by": "Administrator",
@@ -235,11 +816,48 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "submit": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Contract Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Contract Creator",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Contract Viewer",
+   "submit": 1
   }
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "track_changes": 1
+ "title_field": "contract_name",
+ "track_changes": 1,
+ "track_seen": 1
 }

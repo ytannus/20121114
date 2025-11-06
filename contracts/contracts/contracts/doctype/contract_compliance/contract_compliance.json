@@ -1,0 +1,89 @@
+{
+ "actions": [],
+ "creation": "2025-11-05 17:39:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "compliance_item",
+  "description",
+  "regulatory_body",
+  "due_date",
+  "column_break_2",
+  "status",
+  "evidence_document",
+  "verified_by",
+  "verification_date",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "compliance_item",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Compliance Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "regulatory_body",
+   "fieldtype": "Data",
+   "label": "Regulatory Body"
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Due Date"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "In Progress",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Compliant\nNon-Compliant\nIn Progress\nNot Applicable"
+  },
+  {
+   "fieldname": "evidence_document",
+   "fieldtype": "Attach",
+   "label": "Evidence Document"
+  },
+  {
+   "fieldname": "verified_by",
+   "fieldtype": "Link",
+   "label": "Verified By",
+   "options": "User"
+  },
+  {
+   "fieldname": "verification_date",
+   "fieldtype": "Date",
+   "label": "Verification Date"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-11-05 17:39:00.000000",
+ "modified_by": "Administrator",
+ "module": "Contracts",
+ "name": "Contract Compliance",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

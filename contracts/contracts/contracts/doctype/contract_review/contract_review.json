@@ -1,0 +1,85 @@
+{
+ "actions": [],
+ "creation": "2025-11-05 17:39:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "review_date",
+  "reviewed_by",
+  "review_type",
+  "column_break_2",
+  "findings",
+  "recommendations",
+  "action_items",
+  "next_review_date",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "review_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Review Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reviewed_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Reviewed By",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "review_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Review Type",
+   "options": "Scheduled\nAd-hoc\nAudit\nPerformance"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "findings",
+   "fieldtype": "Small Text",
+   "label": "Findings"
+  },
+  {
+   "fieldname": "recommendations",
+   "fieldtype": "Small Text",
+   "label": "Recommendations"
+  },
+  {
+   "fieldname": "action_items",
+   "fieldtype": "Small Text",
+   "label": "Action Items"
+  },
+  {
+   "fieldname": "next_review_date",
+   "fieldtype": "Date",
+   "label": "Next Review Date"
+  },
+  {
+   "default": "Scheduled",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Scheduled\nCompleted\nCancelled"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-11-05 17:39:00.000000",
+ "modified_by": "Administrator",
+ "module": "Contracts",
+ "name": "Contract Review",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

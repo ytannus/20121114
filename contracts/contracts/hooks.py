@@ -113,23 +113,13 @@ app_license = "MIT"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-#	"all": [
-#		"contracts.tasks.all"
-#	],
-#	"daily": [
-#		"contracts.tasks.daily"
-#	],
-#	"hourly": [
-#		"contracts.tasks.hourly"
-#	],
-#	"weekly": [
-#		"contracts.tasks.weekly"
-#	],
-#	"monthly": [
-#		"contracts.tasks.monthly"
-#	],
-# }
+scheduler_events = {
+	"daily": [
+		"contracts.contracts.contracts.doctype.contract.contract.check_expiring_contracts",
+		"contracts.contracts.contracts.doctype.contract.contract.auto_renew_contracts",
+		"contracts.contracts.contracts.doctype.contract.contract.update_contract_statuses"
+	]
+}
 
 # Testing
 # -------

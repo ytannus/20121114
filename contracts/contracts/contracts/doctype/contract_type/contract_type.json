@@ -1,0 +1,133 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:contract_type_name",
+ "creation": "2025-11-05 17:39:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "contract_type_name",
+  "description",
+  "is_active",
+  "section_break_2",
+  "default_duration_days",
+  "requires_approval",
+  "column_break_3",
+  "approval_workflow",
+  "notification_template",
+  "section_break_4",
+  "default_terms"
+ ],
+ "fields": [
+  {
+   "fieldname": "contract_type_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Contract Type Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Active"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Default Settings"
+  },
+  {
+   "fieldname": "default_duration_days",
+   "fieldtype": "Int",
+   "label": "Default Duration (Days)"
+  },
+  {
+   "default": "1",
+   "fieldname": "requires_approval",
+   "fieldtype": "Check",
+   "label": "Requires Approval"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approval_workflow",
+   "fieldtype": "Link",
+   "label": "Approval Workflow",
+   "options": "Workflow"
+  },
+  {
+   "fieldname": "notification_template",
+   "fieldtype": "Link",
+   "label": "Notification Template",
+   "options": "Email Template"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Default Terms Template"
+  },
+  {
+   "fieldname": "default_terms",
+   "fieldtype": "Text Editor",
+   "label": "Default Terms"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-05 17:39:00.000000",
+ "modified_by": "Administrator",
+ "module": "Contracts",
+ "name": "Contract Type",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Contract Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Contract Creator",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
