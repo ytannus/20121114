@@ -1,0 +1,378 @@
+{
+  "name": "Email Attachments to Dropbox by Sender",
+  "nodes": [
+    {
+      "parameters": {
+        "mailbox": "INBOX",
+        "postProcessAction": "markAsRead",
+        "options": {
+          "allowUnauthorizedCerts": false,
+          "forceReconnect": true
+        }
+      },
+      "id": "8e0e0b9a-5c4a-4f3a-9e7b-1234567890ab",
+      "name": "Email Trigger (IMAP)",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ],
+      "credentials": {
+        "imap": {
+          "id": "1",
+          "name": "IMAP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.attachments }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "9f1f1c0b-6d5b-5g4b-0f8c-2345678901bc",
+      "name": "Has Attachments?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": false,
+        "values": {
+          "string": [
+            {
+              "name": "senderEmail",
+              "value": "={{ $json.from.address }}"
+            },
+            {
+              "name": "senderName",
+              "value": "={{ $json.from.name || $json.from.address.split('@')[0] }}"
+            },
+            {
+              "name": "subject",
+              "value": "={{ $json.subject }}"
+            },
+            {
+              "name": "receivedDate",
+              "value": "={{ $json.date }}"
+            },
+            {
+              "name": "folderName",
+              "value": "={{ $json.from.address.replace(/[^a-zA-Z0-9@._-]/g, '_') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0g2g2d1c-7e6c-6h5c-1g9d-3456789012cd",
+      "name": "Extract Sender Info",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        680,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "path": "={{ '/Emails/' + $json.folderName }}",
+        "options": {}
+      },
+      "id": "1h3h3e2d-8f7d-7i6d-2h0e-4567890123de",
+      "name": "Create Dropbox Folder",
+      "type": "n8n-nodes-base.dropbox",
+      "typeVersion": 2,
+      "position": [
+        900,
+        200
+      ],
+      "credentials": {
+        "dropboxApi": {
+          "id": "2",
+          "name": "Dropbox account"
+        }
+      },
+      "continueOnFail": true,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+              "name": "folderPath",
+              "value": "={{ '/Emails/' + $('Extract Sender Info').item.json.folderName }}",
+              "type": "string"
+            },
+            {
+              "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+              "name": "senderEmail",
+              "value": "={{ $('Extract Sender Info').item.json.senderEmail }}",
+              "type": "string"
+            },
+            {
+              "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+              "name": "senderName",
+              "value": "={{ $('Extract Sender Info').item.json.senderName }}",
+              "type": "string"
+            },
+            {
+              "id": "d4e5f6a7-b8c9-0123-def1-234567890123",
+              "name": "subject",
+              "value": "={{ $('Extract Sender Info').item.json.subject }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2i4i4f3e-9g8e-8j7e-3i1f-5678901234ef",
+      "name": "Set Folder Path",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1120,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "attachments",
+        "options": {}
+      },
+      "id": "3j5j5g4f-0h9f-9k8f-4j2g-6789012345fg",
+      "name": "Split Attachments",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "path": "={{ $('Set Folder Path').item.json.folderPath + '/' + $json.filename }}",
+        "binaryData": true,
+        "options": {
+          "mode": "overwrite"
+        }
+      },
+      "id": "4k6k6h5g-1i0g-0l9g-5k3h-7890123456gh",
+      "name": "Upload to Dropbox",
+      "type": "n8n-nodes-base.dropbox",
+      "typeVersion": 2,
+      "position": [
+        1560,
+        200
+      ],
+      "credentials": {
+        "dropboxApi": {
+          "id": "2",
+          "name": "Dropbox account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e5f6a7b8-c9d0-1234-ef12-345678901234",
+              "name": "uploadedFile",
+              "value": "={{ $json.path_display }}",
+              "type": "string"
+            },
+            {
+              "id": "f6a7b8c9-d0e1-2345-f123-456789012345",
+              "name": "fileName",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "a7b8c9d0-e1f2-3456-1234-567890123456",
+              "name": "fileSize",
+              "value": "={{ $json.size }}",
+              "type": "number"
+            },
+            {
+              "id": "b8c9d0e1-f2a3-4567-2345-678901234567",
+              "name": "senderEmail",
+              "value": "={{ $('Set Folder Path').item.json.senderEmail }}",
+              "type": "string"
+            },
+            {
+              "id": "c9d0e1f2-a3b4-5678-3456-789012345678",
+              "name": "emailSubject",
+              "value": "={{ $('Set Folder Path').item.json.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "d0e1f2a3-b4c5-6789-4567-890123456789",
+              "name": "uploadDate",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5l7l7i6h-2j1h-1m0h-6l4i-8901234567hi",
+      "name": "Format Output",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        1780,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Email Attachments Successfully Processed\n\n**File:** {{ $json.fileName }}\n**From:** {{ $json.senderEmail }}\n**Subject:** {{ $json.emailSubject }}\n**Uploaded to:** {{ $json.uploadedFile }}\n**Size:** {{ ($json.fileSize / 1024).toFixed(2) }} KB\n**Date:** {{ $json.uploadDate }}",
+        "height": 464,
+        "width": 389
+      },
+      "id": "6m8m8j7i-3k2i-2n1i-7m5j-9012345678ij",
+      "name": "Success Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## No Attachments Found\n\nEmail received but contains no attachments.\nSkipping processing.",
+        "height": 271,
+        "width": 344
+      },
+      "id": "7n9n9k8j-4l3j-3o2j-8n6k-0123456789jk",
+      "name": "No Attachments Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        460,
+        460
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8o0o0l9k-5m4k-4p3k-9o7l-1234567890kl",
+      "name": "No Operation - Skip",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        680,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Email Trigger (IMAP)": {
+      "main": [
+        [
+          {
+            "node": "Has Attachments?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Attachments?": {
+      "main": [
+        [
+          {
+            "node": "Extract Sender Info",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation - Skip",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Sender Info": {
+      "main": [
+        [
+          {
+            "node": "Create Dropbox Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Dropbox Folder": {
+      "main": [
+        [
+          {
+            "node": "Set Folder Path",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Folder Path": {
+      "main": [
+        [
+          {
+            "node": "Split Attachments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Attachments": {
+      "main": [
+        [
+          {
+            "node": "Upload to Dropbox",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload to Dropbox": {
+      "main": [
+        [
+          {
+            "node": "Format Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-06T00:00:00.000Z",
+  "versionId": "1"
+}
